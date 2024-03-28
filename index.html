@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bicycle Rental App</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .button-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding-top: 100px;
+            margin-bottom: 50px;
+            display: flex;
+            align-items: center;
+        }
+
+        .button-container img {
+            width: 30px; /* Adjust size as needed */
+            height: auto;
+            margin-bottom: 50px;
+            margin-left: 30px; /* Add space between buttons */
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <!-- Add your app logo here -->
+            <img src="C:/Users/Lenovo/Downloads/cycling.png" alt="Bicycle Rentals">
+        </div>
+        <h1>Bicycle Rental App</h1>
+        <div class="button-container">
+            <img src="C:/Users/Lenovo/Downloads/user.png" alt="Profile" onclick="navigateToProfile()">
+            <img src="C:/Users/Lenovo/Downloads/cart.png" alt="View Cart" onclick="navigateToCart()">
+            <img src="C:/Users/Lenovo/Downloads/heart.png" alt="View Wishlist" onclick="navigateToHeart()">
+        </div>
+    </header>
+
+    <main>
+        <h1>Welcome to Bicycle Rental App</h1>
+        <button onclick="navigateToRent()">Rent a Cycle</button>
+        <!-- Add rental locations buttons here -->
+    </main>
+    
+
+        <div class="footer">
+            <p>Happy rentals, Happy environment :)</p>
+        </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent Bicycles</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* CSS styles specific to rent.html */
+        .bicycle-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjust as needed */
+            gap: 20px;
+            justify-items: center;
+        }
+
+        .bicycle {
+            border: 1px solid #ccc;
+            margin: 20px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .bicycle img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .button-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding-top: 100px;
+            margin-bottom: 50px;
+            display: flex;
+            align-items: center;
+        }
+
+        .button-container img {
+            width: 30px; /* Adjust size as needed */
+            height: auto;
+            margin-bottom: 50px;
+            margin-left: 30px; /* Add space between buttons */
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <!-- Add your app logo here -->
+            <img src="C:/Users/Lenovo/Downloads/cycling.png" alt="Bicycle Rentals">
+        </div>
+        <h1>Bicycle Rental App</h1>
+    </header>
+
+    <main>
+        <h1>Rent Bicycles</h1>
+        <div class="bicycle-container">
+            <!-- Bicycle 1 -->
+            <div class="bicycle">
+                <img src="C:/xampp/htdocs/APP/road-cycle.jpeg" alt="Road Cycle">
+                <p class="price">Road Cycle - ₹20/day</p>
+                <button onclick="addToCart('Road Cycle',20)">Add to Cart</button>
+                <button onclick="toggleWishlist('Road Cycle')">Add to Wishlist</button>
+            </div>
+            
+            <!-- Bicycle 2 -->
+            <div class="bicycle">
+                <img src="C:/xampp/htdocs/APP/mountain-cycle.jpeg" alt="Mountain Cycle ">
+                <p class="price">Mountain Cycle - ₹25/day</p>
+                <button onclick="addToCart('Mountain Cycle',25)">Add to Cart</button>
+                <button onclick="toggleWishlist('Mountain Cycle')">Add to Wishlist</button>
+            </div>
+
+            <div class="bicycle">
+                <img src="C:/xampp/htdocs/APP/cyclo-cross.jpeg" alt="Cyclo Cross ">
+                <p class="price">Cyclo Cross Cycle - ₹22/day</p>
+                <button onclick="addToCart('Cyclo Cross',22)">Add to Cart</button>
+                <button onclick="toggleWishlist('Cyclo Cross')">Add to Wishlist</button>
+            </div>
+
+            <div class="bicycle">
+                <img src="C:/xampp/htdocs/APP/electric-cargo-bicycle.jpeg" alt="Electric Cargo Bicycle ">
+                <p class="price">Electric Cargo Bicycle - ₹28/day</p>
+                <button onclick="addToCart('Electric Cargo Bicycle',28)">Add to Cart</button>
+                <button onclick="toggleWishlist('Electric Cargo Bicycle')">Add to Wishlist</button>
+            </div>
+            <div class="bicycle">
+                <img src="C:/xampp/htdocs/APP/touring-bicycle.jpeg" alt="Touring Bicycle ">
+                <p class="price">Touring Bicycle - ₹16/day</p>
+                <button onclick="addToCart('Touring Bicycle',16)">Add to Cart</button>
+                <button onclick="toggleWishlist('Touring Bicycle')">Add to Wishlist</button>
+            </div>
+        </div>
+        
+        <div class="button-container">
+            <img src="C:/Users/Lenovo/Downloads/user.png" alt="Profile" onclick="navigateToProfile()">
+            <img src="C:/Users/Lenovo/Downloads/cart.png" alt="View Cart" onclick="navigateToCart()">
+            <img src="C:/Users/Lenovo/Downloads/heart.png" alt="View Wishlist" onclick="navigateToHeart()">
+        </div>
+    </main>
+
+    <div class="footer">
+        <p>Happy rentals, Happy environment :)</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

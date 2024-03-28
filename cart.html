@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .cart-items {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 250px;
+            float: left; /* Ensure each box appears on a new line */
+            clear: left; 
+        }
+        .cart-items img {
+            max-width: 100%; /* Allow images to fill box width */
+            height: auto;
+            display: block; /* Ensure images align properly within boxes */
+            margin-bottom: 5px; /* Add some space below the image */
+        }
+
+        .payment-options {
+            position: fixed; /* Position the div relative to the viewport */
+            bottom: 0; /* Align to the bottom */
+            left: 0; /* Align to the left */
+            padding: 10px; /* Add some padding for visual appearance */
+            background-color: #fff;
+        }   
+        .bicycle-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjust as needed */
+            gap: 20px;
+            border-radius: 20px;
+            justify-items: center;
+            width: 500px;
+        } 
+        .cart-total {
+            margin-top: 20px; /* Add some space above the total */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <!-- Header content -->
+        <div class="logo">
+            <!-- Add your app logo here -->
+            <img src="C:/Users/Lenovo/Downloads/cycling.png" alt="Bicycle Rentals">
+        </div>
+        <h1>Bicycle Rental App</h1>
+    </header>
+    <main>
+        <h1>Shopping Cart</h1>
+        <div class="bicycle-container">
+        <div class="cart-items">
+            <!-- Display cart items here -->
+        </div>
+       </div>
+       <div class="cart-total">
+        <!-- Display total here -->
+        <p>Total: <span id="totalAmount">₹0</span></p>
+    </div>
+    </main>
+
+    <footer>
+        <!-- Footer content -->
+    </footer>
+
+    <div class="payment-options">
+        <button onclick="redirectToPayment()">Proceed to Payment</button>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Function to display cart items
+        window.onload = function() {
+            var cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            var cartContainer = document.querySelector('.cart-items');
+            var totalAmount = 0; // Initialize total amount
+            cartItems.forEach(function(item) {
+                var cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item'); // Add the 'cart-item' class to the div
+                cartItem.innerHTML = `
+                    <img src="${getBicycleImage(item.name)}" alt="${item.name}">
+                    <p>Bicycle Name: ${item.name}</p>
+                    <p>Price: ₹${item.price}</p>
+                    <button onclick="removeFromCart('${item.name}')">Remove</button>
+                `;
+                cartContainer.appendChild(cartItem);
+                totalAmount += item.price; // Add item price to total
+            });
+            // Display total amount
+            document.getElementById('totalAmount').textContent = '₹' + totalAmount.toFixed(2); // Format total amount with 2 decimal places
+        }
+
+        // Function to get bicycle image source based on name
+        function getBicycleImage(bicycleName) {
+            // Assuming images are in the same directory as this HTML file
+            var imageName = bicycleName.toLowerCase().replace(/\s+/g, '-') + '.jpeg';
+            console.log('Image path:', imageName); // Log the image path to console
+            return imageName;
+        }
+
+        // Function to remove item from cart
+        function removeFromCart(bicycleName) {
+            var cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            var updatedCartItems = cartItems.filter(function(item) {
+                return item.name !== bicycleName;
+            });
+            localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+            location.reload(); // Refresh the page to reflect changes
+        }
+
+        // Function to redirect to payment page
+        function redirectToPayment() {
+            window.location.href = 'payment.html';
+        }
+    </script>
+</body>
+</html>

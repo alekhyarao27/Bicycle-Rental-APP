@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .button-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding-top: 100px;
+            margin-bottom: 50px;
+            display: flex;
+            align-items: center;
+        }
+
+        .button-container img {
+            width: 30px; /* Adjust size as needed */
+            height: auto;
+            margin-bottom: 50px;
+            margin-left: 30px; /* Add space between buttons */
+            cursor: pointer;
+        }
+        .wishlist-items {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 350px;
+            float: left; /* Ensure each box appears on a new line */
+            clear: left; 
+        }
+        .wishlist-items img {
+            max-width: 100%; /* Allow images to fill box width */
+            height: auto;
+            display: block; /* Ensure images align properly within boxes */
+            margin-bottom: 5px; /* Add some space below the image */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="C:/Users/Lenovo/Downloads/cycling.png" alt="Bicycle Rentals">
+        </div>
+        <h1>Bicycle Rental App</h1>
+        <div class="button-container">
+            <img src="C:/Users/Lenovo/Downloads/user.png" alt="Profile" onclick="navigateToProfile()">
+            <img src="C:/Users/Lenovo/Downloads/cart.png" alt="View Cart" onclick="navigateToCart()">
+        </div>    
+    </header>
+    <main>
+    <h1>Wishlist</h1>
+    <div id="wishlistItems" class="wishlist-items">
+        <!-- Wishlist items will be displayed here -->
+    </div>
+    </main>
+    <script>
+        window.onload = function() {
+            var wishlistItems = JSON.parse(localStorage.getItem('wishlistItems')) || [];
+            var wishlistContainer = document.getElementById('wishlistItems');
+            wishlistItems.forEach(function(item, index) {
+                var div = document.createElement('div');
+                div.classList.add('wishlist-item');
+
+                var img = document.createElement('img');
+                img.src = getBicycleImage(item.name);
+                img.alt = item.name;
+                div.appendChild(img);
+
+                var nameParagraph = document.createElement('p');
+                nameParagraph.textContent = item.name;
+                div.appendChild(nameParagraph);
+
+                var removeButton = document.createElement('button');
+                removeButton.textContent = 'Remove';
+                removeButton.onclick = function() {
+                    removeFromWishlist(index); // Call removeFromWishlist function with index
+                };
+                div.appendChild(removeButton);
+
+                wishlistContainer.appendChild(div);
+            });
+        }
+
+        function removeFromWishlist(index) {
+            var wishlistItems = JSON.parse(localStorage.getItem('wishlistItems')) || [];
+            wishlistItems.splice(index, 1); // Remove item from wishlist array
+            localStorage.setItem('wishlistItems', JSON.stringify(wishlistItems));
+            // Reload the page to reflect the changes
+            window.location.reload();
+        }
+
+        function redirectToCart() {
+            window.location.href = 'cart.html';
+        }
+
+        function getBicycleImage(bicycleName) {
+            var imageName = bicycleName.toLowerCase().replace(/\s+/g, '-') + '.jpeg';
+            return imageName;
+        }
+    </script>
+</body>
+</html>
